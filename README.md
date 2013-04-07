@@ -31,8 +31,9 @@ You need to adjust the path if you install AngularJS-WebApp somewhere else.
 
 ## Usage ##
 
-AngualarJs-WebApp bind application state to the browser history object using a History service so that the browser back/forward buttons are still working. In the exemples here I will use section element for the app screens but you can use any element. AngularJS-WebApp only add/remove a class to the app screens to indicate the current screen. You have to use css to hide/show screen.
-A very basic css file is included to get you started. This css file suppose the section elements are your app screens.
+AngualarJs-WebApp bind application state to the browser history object using a History service so that the browser back/forward buttons are still working. In the exemples here I will use section element for the app screens but you can use any element. AngularJS-WebApp only add/remove a class to the app screens to indicate the current screen. 
+
+You have to use css to hide/show screen. A very basic css file is included to get you started. This css file suppose the section elements are your app screens.
 
 ### directives ###
 
