@@ -58,6 +58,7 @@ You have to use css to hide/show screen. A very basic css file is included to ge
 This represent an app with 3 screen. The app is initilized with the #home screen (selector configurable). the screen directive is used to move between screens, the value can be:
 * $home to take the user to home screen
 * $back to take the user to the previous screen
+* $backOrHome to take the user to the previous screen if a previous state is availlable and to $home if not
 * a css selector to take the user to the screen the selector point to (using document.querySelector)
 
 If a screen have a ng:model attribute, the screen directive can communicate data to the targeted screen. In the previous screen, the value of 'firstname' on second screen scope is injected into the thirdscreen scope as 'name'.

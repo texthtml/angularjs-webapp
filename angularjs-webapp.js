@@ -146,6 +146,10 @@ angular.module('WebApp', [])
 		
 		var ScreenManager = {
 			go: function(screen, model) {
+				if(screen === '$backOrHome') {
+					screen = History.position() === 0 ? '$home' : '$back';
+				}
+				
 				if(screen === '$back') {
 					return History.back();
 				}
@@ -206,7 +210,6 @@ angular.module('WebApp', [])
 			restrict: 'A', 
 			link: function screenAttributeLink(scope, element, attrs) {
 				element.bind('click', function(event) {
-					console.log(event);
 					ScreenManager.go(attrs.screen, scope.$eval(attrs.screenModel));
 				});
 				
