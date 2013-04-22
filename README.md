@@ -37,49 +37,49 @@ You have to use css to hide/show screen. A very basic css file is included to ge
 
 ### directives ###
 
-#### screen (attribute) ####
+#### th:screen (attribute) ####
 
     <section id="home">
       <h1>Home Screen</h1>
-      <button screen="#secondscreen">go to secondscreen</button>
+      <button th:screen="#secondscreen">go to secondscreen</button>
     </section>
     <section id="secondscreen">
-      <button screen="$home">Home</button>
+      <button th:screen="$home">Home</button>
       <h1>Home Screen</h1>
       <input ng:init="firstname='World'" ng:model="firstname" />
-      <button screen="#thirdscreen" screen:model="firstname">go to thirdscreen</button>
+      <button th:screen="#thirdscreen" th:screen-model="firstname">go to thirdscreen</button>
     </section>
     <section id="thirdscreen" ng:model="name">
-      <button screen="$back">Back</button>
+      <button th:screen="$back">Back</button>
       <h1>Third Screen</h1>
       Hello {{ name }}
     </section>
 
-This represent an app with 3 screen. The app is initilized with the #home screen (selector configurable). the screen directive is used to move between screens, the value can be:
+This represent an app with 3 screen. The app is initilized with the #home screen (selector configurable). the th:screen directive is used to move between screens, the value can be:
 * $home to take the user to home screen
 * $back to take the user to the previous screen
 * $backOrHome to take the user to the previous screen if a previous state is availlable and to $home if not
 * a css selector to take the user to the screen the selector point to (using document.querySelector)
 
-If a screen have a ng:model attribute, the screen directive can communicate data to the targeted screen. In the previous screen, the value of 'firstname' on second screen scope is injected into the thirdscreen scope as 'name'.
-If a screen directive on a button have ther value '$back' and there is no more previous state, the button will be disabled.
+If a screen have a th:model attribute, the th:screen directive can communicate data to the targeted screen. In the previous screen, the value of 'firstname' on second screen scope is injected into the thirdscreen scope as 'name'.
+If a th:screen directive on a button have the value '$back' and there is no more previous state, the button will be disabled.
 
-#### route (attribute) ####
+#### th:route (attribute) ####
 
-AngualarJs-WebApp can also change the URL according to the screen. The route is described on the screens element with the route attribute. Only screen you want to be availlable with a custom URL need a route attribute. Screens with and without route attribute can be mixed.
+AngualarJs-WebApp can also change the URL according to the screen. The route is described on the screens element with the th:route attribute. Only screen you want to be availlable with a custom URL need a th:route attribute. Screens with and without th:route attribute can be mixed.
 
     <section id="home">
       <h1>Home Screen</h1>
-      <button screen="#secondscreen">go to secondscreen</button>
+      <button th:screen="#secondscreen">go to secondscreen</button>
     </section>
-    <section id="secondscreen" route="/second">
-      <button screen="$home">Home</button>
+    <section id="secondscreen" th:route="/second">
+      <button th:screen="$home">Home</button>
       <h1>Home Screen</h1>
       <input ng:init="firstname='World'" ng:model="firstname" />
-      <button screen="#thirdscreen" screen:model="firstname">go to thirdscreen</button>
+      <button th:screen="#thirdscreen" th:screen-model="firstname">go to thirdscreen</button>
     </section>
-    <section id="thirdscreen" ng:model="name" route="/hello/:name">
-      <button screen="$back">Back</button>
+    <section id="thirdscreen" th:model="name" route="/hello/:name">
+      <button th:screen="$back">Back</button>
       <h1>Third Screen</h1>
       Hello {{ name }}
     </section>
@@ -88,12 +88,12 @@ now when going to the second screen, the URL will be changed to /second and when
 Be careful, when you use this, you have to make sure the application is served on all the reachable URLs. You can do this on your server or with a FALLBACK if you are using Application Cache with your app.
 When accessing the app with an URL matching a screen route, AngualarJs-WebApp will initilize the app to this screen and populate its scope with variable found in the URL if any. In the exemple, going to /hello/Pierre would load the third screen and show "Hello Pierre"
 
-#### ngApp ####
+#### th:app ####
 
-You are already using this one. ngApp is extended to initialize the StateManager and can be configured with optional attributes:
+th:app is used to initialize the StateManager and can be configured with optional attributes:
    
-* first-screen: css selector to the first screen of your app (defaults to #home)
-* screen-class: class used to identify the current screen
+* th:first-screen: css selector to the first screen of your app (defaults to #home)
+* th:screen-class: class used to identify the current screen
 
 
 ## Documentation ##
