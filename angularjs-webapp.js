@@ -205,8 +205,7 @@ define(function(require) {
 					$rootScope.$evalAsync(function() {
 						var route = thRouter.find($window.location.pathname);
 						var state = {
-							selector: route === null ? homeSelector : '[route="'+(route.elem.attr('th:route') || route.elem.attr('th-route') || route.elem.attr('thRoute'))+'"]', 
-							historyPosition: currentHistoryPosition = 0
+							selector: route === null ? homeSelector : '[route="'+(route.elem.attr('th:route') || route.elem.attr('th-route') || route.elem.attr('thRoute'))+'"]'
 						};
 						
 						thHistory.replace(state);
