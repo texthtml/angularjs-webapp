@@ -42,7 +42,7 @@ define(function(require) {
 		
 		$rootScope.$evalAsync(function() {
 			$rootScope.$broadcast('history:current-state-changed', History.state(), position);
-		})
+		});
 		
 		return History;
 	}])
@@ -63,9 +63,9 @@ define(function(require) {
 								if(route[i][0] !== ':' && route[i] !== path[i]) {
 									return false;
 								}
-							};
+							}
 							return true;
-						}
+						};
 					} ((elem.attr('th:route') || elem.attr('th-route') || elem.attr('thRoute')).split('/'))
 				});
 			}, 
@@ -78,7 +78,7 @@ define(function(require) {
 						result = route;
 						return true;
 					}
-				})
+				});
 				
 				return result;
 			}, 
@@ -119,15 +119,16 @@ define(function(require) {
 			
 			var el         = setupScreen(state);
 			var scope      = el.scope();
-			var onActivate = el.attr('th:screen:activate') || 
-			                 el.attr('th:screen-activate') || 
-			                 el.attr('th-screen:activate') || 
-			                 el.attr('th-screen-activate') || 
-			                 el.attr('th:screenActivate') || 
-			                 el.attr('th-screenActivate') || 
-			                 el.attr('thScreen:activate') || 
-			                 el.attr('thScreenActivate') || 
-			                 el.attr('thScreen-activate');
+			var onActivate = 
+				el.attr('th:screen:activate') || 
+				el.attr('th:screen-activate') || 
+				el.attr('th-screen:activate') || 
+				el.attr('th-screen-activate') || 
+				el.attr('th:screenActivate') || 
+				el.attr('th-screenActivate') || 
+				el.attr('thScreen:activate') || 
+				el.attr('thScreenActivate') || 
+				el.attr('thScreen-activate');
 			
 			thRouter.parse(el.attr('th:route') || el.attr('th-route') || el.attr('thRoute'), $window.location.pathname, scope);
 			
@@ -235,14 +236,14 @@ define(function(require) {
 			}
 		};
 	}])
-	.directive('thModel', ['thHistory', 'thScreenManager', function screenFactory(thHistory, thScreenManager) {
+	.directive('thModel', ['thScreenManager', function screenFactory(thScreenManager) {
 		return {
 			restrict: 'A', 
 			link: function modelReplaceStateFactory(scope, element, attrs) {
 				scope.replaceState = function() {
 					var model = scope.$eval(attrs.thModel);
 					thScreenManager.replace(element, model);
-				}
+				};
 			}
 		};
 	}])
@@ -250,7 +251,7 @@ define(function(require) {
 		return {
 			restrict: 'A', 
 			link: function screenAttributeLink(scope, element, attrs) {
-				element.bind('click', function(event) {
+				element.bind('click', function() {
 					thScreenManager.go(attrs.thScreen, scope.$eval(attrs.thScreenModel));
 				});
 				
